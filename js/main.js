@@ -41,7 +41,6 @@ WinJS.Application.onready = function() {
         window.addEventListener("focus", function() {
             hiddenText.focus();
             hiddenText.select();
-            console.log("window refocused");
         });
         container.addEventListener("click", function() {
             hiddenText.focus(); //Give focus to textarea
