@@ -1,0 +1,35 @@
+{
+  "author": "Wesley Wigham",
+  "name": "tempo-whats-up",
+  "description": "A simple application utilizing undocumented JIRA Tempo APIs to let you log time continuously, quickly, and efficiently.",
+  "version": "0.0.1",
+  "homepage": "https://github.com/weswigham/tempo-whats-up",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/weswigham/tempo-whats-up"
+  },
+  "scripts": {
+    "start": "nodewebkit .",
+    "deploy": "grunt"
+  },
+  "devDependencies": {
+    "grunt": "*",
+    "grunt-node-webkit-builder": "~0.1.21",
+    "nodewebkit": "~0.9.2",
+    "grunt-cli": "*"
+  },
+    
+  "main": "index.html",
+  "single-instance": true,
+  "window": {
+    "title": "whats-up",
+    "width": 685,
+    "min_width": 300,
+    "min_height": 82,
+    "max_height": 82,
+    "height": 82,
+    "toolbar": false,
+    "frame": false
+  },
+  "chromium-args": "--child-clean-exit --enable-threaded-compositing"
+}

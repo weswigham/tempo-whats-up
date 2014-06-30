@@ -1,0 +1,45 @@
+.container {
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    height: 100%;
+}
+
+.textarea { /* hide the input text area so we use the h1 for styles */
+    position: fixed;
+    left: 110%; /*Hide on the left to the window doesn't stutter on content additions*/
+}
+
+.primary-text-binding {
+    padding: 7px;
+    height: 100%;
+    display:inline;
+
+    -webkit-user-select: none;
+    -webkit-app-region: drag;}
+
+.close {
+    display: inline-block;
+    color: #444;
+    font-size: 3em;
+    line-height: 100%;
+    text-align: center;
+    vertical-align: baseline;
+    
+    -webkit-transition: color 0.25s;
+}
+
+.close:hover {
+    color:#fff;
+}
+
+::-webkit-scrollbar {
+    height: 6px;
+    background: rgb(19, 29, 29);
+}
+::-webkit-scrollbar-thumb {
+    background: rgb(29, 29, 29);
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(59, 59, 59);
+}
