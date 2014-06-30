@@ -6,6 +6,7 @@ WinJS.Application.onready = function() {
 
         var textOutput = document.querySelector(".primary-text-binding");
         var container = document.querySelector(".container");
+        var hiddenText = document.querySelector(".textarea");
 
         function onTextChanged(newValue, oldValue) {
             if (!textOutput.firstChild) {
@@ -38,20 +39,25 @@ WinJS.Application.onready = function() {
         bindToInputChanges();
 
         window.addEventListener("focus", function() {
-            document.querySelector(".textarea").focus();
+            hiddenText.focus();
+            hiddenText.select();
+            console.log("window refocused");
         });
-        document.querySelector(".textarea").addEventListener("blur", function(e) {
-            e.preventDefault();
-        });
-        document.querySelector(".primary-text-binding").addEventListener("click", function() {
-            document.querySelector(".textarea").focus(); //Give focus to textarea
+        container.addEventListener("click", function() {
+            hiddenText.focus(); //Give focus to textarea
         });
 
-        document.querySelector(".textarea").focus();
+        // Load native UI library
+        var gui = require('nw.gui');
 
-        document.querySelector(".textarea").addEventListener("focus", function(e) {
-            e.preventDefault();
+        // Get the current window
+        var win = gui.Window.get();
+        win.on("close", function () { 
+            //TODO: Commit any pending time
+            this.close(true);
         });
+        
+        hiddenText.focus();
     });
 };
 WinJS.Application.start();
