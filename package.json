@@ -28,7 +28,7 @@
     "min_height": 82,
     "max_height": 82,
     "height": 82,
-    "toolbar": true,
+    "toolbar": false,
     "frame": false
   },
   "chromium-args": "--child-clean-exit --enable-threaded-compositing",
