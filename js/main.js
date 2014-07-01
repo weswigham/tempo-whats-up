@@ -43,8 +43,13 @@ WinJS.Application.onready = function() {
                 },
                 summary: summary,
                 issuetype: {
-                    id: conf.settings["default-issue-type"] //Task, by default.
+                    id: conf.settings["default-issue-type"], //Task, by default.
                 },
+                components: [
+                    {
+                        id: conf.settings["default-issue-component"],
+                    }
+                ],
             }, function(resp) {
                 if (resp.key) { //Success!
                     Tempo.addTime(resp.key, time, "Working on "+resp.key, noop);

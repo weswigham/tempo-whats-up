@@ -34,9 +34,10 @@
   "chromium-args": "--child-clean-exit --enable-threaded-compositing",
     
   "settings": {
-    "timeout": 10,
+    "timeout": 15,
     "jira": "http://localhost:8080/",
     "default-project": "DESU",
-    "default-issue-type": 3
+    "default-issue-type": 3,
+    "default-issue-component": 10925
   }
 }
