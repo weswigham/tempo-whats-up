@@ -4,6 +4,9 @@ var gui = require('nw.gui');
 (function(apiRoot) {
     var Tempo = {};
     
+    function noop() {}
+    function logop(req) {console.log(req.response);}
+    
     var authed = false;
     Tempo.authenticate = function(cb) {
         authed = false;
@@ -42,7 +45,7 @@ var gui = require('nw.gui');
         }).done(
             function(req) {
                 cb(req.response);
-            }
+            }, logop, noop
         ); //We only care about success
     };
     
@@ -54,11 +57,10 @@ var gui = require('nw.gui');
             type: 'GET',
             url: issueUrl,
             responseType: 'json',
-            withCredentials: true,
         }).done(
             function(req) {
                 cb(req.response);
-            }
+            }, logop, noop
         ); //We only care about success
     };
     
@@ -75,7 +77,7 @@ var gui = require('nw.gui');
         }).done(
             function(req) {
                 cb(req.response);
-            }
+            }, logop, noop
         ); //We only care about success
     };
     
@@ -98,7 +100,7 @@ var gui = require('nw.gui');
         }).done(
             function(req) {
                 cb(req.response);
-            }
+            }, logop, noop
         ); //We only care about success
     };
     
