@@ -12,7 +12,7 @@ module.exports = function(grunt) {
         linux64: true,
         app_name: "Whats Up"
       },
-      src: ['../tempo-whats-up/**/*']
+      src: ['index.html', 'package.json', 'js/**/*', 'fonts/**/*', 'styles/**/*']
     },
   });
 
