@@ -57,6 +57,12 @@ WinJS.Application.onready = function() {
         });
         
         hiddenText.focus();
+        
+        var eventQueue = [];
+        
+        if (!Tempo.authStatus()) {
+            Tempo.authenticate();
+        }
     });
 };
 WinJS.Application.start();

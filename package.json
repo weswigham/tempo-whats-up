@@ -28,8 +28,12 @@
     "min_height": 82,
     "max_height": 82,
     "height": 82,
-    "toolbar": false,
+    "toolbar": true,
     "frame": false
   },
-  "chromium-args": "--child-clean-exit --enable-threaded-compositing"
+  "chromium-args": "--child-clean-exit --enable-threaded-compositing",
+    
+  "settings": {
+    "jira": "http://localhost:8080/"
+  }
 }
