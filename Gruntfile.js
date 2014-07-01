@@ -9,9 +9,10 @@ module.exports = function(grunt) {
         mac: true,
         win: true,
         linux32: true,
-        linux64: true
+        linux64: true,
+        app_name: "Whats Up"
       },
-      src: './'
+      src: ['../tempo-whats-up/**/*']
     },
   });
 
