@@ -35,14 +35,19 @@ WinJS.Application.onready = function() {
         function noop() {}
         
         function simpleNewIssueLog(project, summary, time) {
+            var inHours = time/(60*60);
+            var timeString = ""+inHours;
             Tempo.postNewIssue({
                 project: {
                     key: project
                 },
-                summary: summary
+                summary: summary,
+                issuetype: {
+                    id: conf.settings["default-issue-type"] //Task, by default.
+                },
             }, function(resp) {
-                if (resp.key) {
-                    Tempo.addTime(resp.key, time, "", noop);
+                if (resp.key) { //Success!
+                    Tempo.addTime(resp.key, time, "Working on "+resp.key, noop);
                 } else {
                     console.log(resp);
                 }
@@ -83,9 +88,16 @@ WinJS.Application.onready = function() {
             }
         }
 
-        function onTextChanged(newValue) {
-            if (!textOutput.firstChild) {
+        function onTextChanged(newValue, oldValue) {
+            if (!textOutput.firstChild) { //We want to ignore the first value set and not push it into the events queue (What are you working on?)
                 textOutput.appendChild(document.createTextNode("_"));
+                textOutput.firstChild.textContent = newValue;
+
+                container.scrollLeft = container.scrollWidth;
+                if (inputTimeoutId !== null) {
+                    clearTimeout(inputTimeoutId);
+                }
+                return;
             }
             textOutput.firstChild.textContent = newValue;
 
@@ -109,13 +121,13 @@ WinJS.Application.onready = function() {
                 .listen("keyup", changeListener)
                 .listen("change", changeListener)
                 .forEach(function (e) {
-                    e.value = textInputBinding.text;
+                    e.value = textInputBinding.text; 
                     e.select();
                 });
         }
 
-        bindToDataSource();
         bindToInputChanges();
+        bindToDataSource();
 
         window.addEventListener("focus", function() {
             hiddenText.focus();

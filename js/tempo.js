@@ -73,7 +73,7 @@ var gui = require('nw.gui');
             type: 'POST',
             url: newIssueEndpoint,
             responseType: 'json',
-            data: request,
+            data: JSON.stringify(request),
             headers: { "Content-type": "application/json" }
         }).done(
             function(req) {
@@ -83,21 +83,27 @@ var gui = require('nw.gui');
     };
     
     Tempo.addTime = function(key, time, message, cb) {
-        var addTimeEndpoint = issueEndpoint+key+"/worklog";
-        var timekey = "timeSpentSeconds";
-        if (time instanceof String) {
-            timekey = "timeSpent";
+        var addTimeEndpoint = issueEndpoint+key+"/worklog?adjustEstimate=new&newEstimate=0h";
+        var hours = Math.floor(time/(60*60));
+        var minutes = Math.round((time/60)-(hours*60));
+        if (minutes<=0) {
+            minutes = 1;
         }
+        var timestring = "";
+        if (hours>0) {
+            timestring += (hours + "h ");
+        }
+        timestring += (minutes + "m");
         
         var request = {};
-        request[timekey] = time;
+        request.timeSpent = timestring;
         request.comment = message;
         
         WinJS.xhr({
             type: 'POST',
             url: addTimeEndpoint,
             responseType: 'json',
-            data: request,
+            data: JSON.stringify(request),
             headers: { "Content-type": "application/json" }
         }).done(
             function(req) {
