@@ -73,7 +73,8 @@ var gui = require('nw.gui');
             type: 'POST',
             url: newIssueEndpoint,
             responseType: 'json',
-            data: request
+            data: request,
+            headers: { "Content-type": "application/json" }
         }).done(
             function(req) {
                 cb(req.response);
@@ -96,7 +97,8 @@ var gui = require('nw.gui');
             type: 'POST',
             url: addTimeEndpoint,
             responseType: 'json',
-            data: request
+            data: request,
+            headers: { "Content-type": "application/json" }
         }).done(
             function(req) {
                 cb(req.response);
